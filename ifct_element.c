@@ -97,7 +97,6 @@ char countryName[N_PLACE+1][MAX_PLACENAME] =
     "CapeTown",
     "Unrecognized"
 };
-
 typedef struct ifs_ele {
 	int index;//number
 	int age;//age
@@ -111,8 +110,9 @@ void* ifctele_genElement(int index, int age, unsigned int detected_time, int his
 {
 	ifs_ele_t* ptr;
 	
-	ptr = malloc();
+	ptr = (void*)malloc(sizeof(void)*10);
 	ptr->index = index;
+
 	//..
 		
 	return ptr;
@@ -125,8 +125,17 @@ int ifctele_getAge(void* obj)
 	return ptr->age;
 }
 
-int ifctele_getHistPlaceIndex(void* obj, int index);
-unsigned int ifctele_getinfestedTime(void* obj);
+int ifctele_getHistPlaceIndex(void* obj, int index)
+{
+	
+};
+
+unsigned int ifctele_getinfestedTime(void* obj)
+{
+	ifs_ele_t* ptr = (ifs_ele_t*)obj;
+	
+	return ptr->time;	
+};
 
 
 //char* ifctele_getPlaceName(int placeIndex);
@@ -134,9 +143,17 @@ unsigned int ifctele_getinfestedTime(void* obj);
 
 void ifctele_printElement(void* obj)
 {
+	int i;
 	ifs_ele_t* ptr = (ifs_ele_t*)obj;
 	
 	printf("Age : %i\n", ptr->age);
+	printf("detected_time : %i\n", ptr->time);
+	for(i=0;i<N_HISTORY;i++)
+	{
+		printf("place is : %i\n", ptr->place[i]);
+		
+	}
+		
 }
 
 

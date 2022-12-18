@@ -1,6 +1,6 @@
 [Project]
-FileName=Project1.dev
-Name=Project1
+FileName=Project.dev
+Name=Project
 Type=1
 Ver=2
 ObjFiles=
@@ -23,7 +23,7 @@ OverrideOutputName=
 HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
-CommandLine=patientInfo_sample.txt
+CommandLine=
 Folders=
 IncludeVersionInfo=0
 SupportXPThemes=0
@@ -51,7 +51,7 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=ifct_database.c
+FileName=main.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -61,7 +61,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=ifct_database.h
+FileName=ifct_database.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -71,7 +71,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=ifct_element.c
+FileName=ifct_database.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -81,7 +81,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=ifct_element.h
+FileName=ifct_element.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -91,7 +91,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=main.c
+FileName=ifct_element.h
 CompileCpp=0
 Folder=
 Compile=1
