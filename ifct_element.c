@@ -126,7 +126,14 @@ int ifctele_getAge(void* obj)
 }
 
 int ifctele_getHistPlaceIndex(void* obj, int index);
-unsigned int ifctele_getinfestedTime(void* obj);
+
+unsigned int ifctele_getinfestedTime(void* obj)
+{
+	ifs_ele_t* ptr = (ifs_ele_t*)obj;
+	
+	return ptr->time;
+	
+};
 
 
 //char* ifctele_getPlaceName(int placeIndex);
@@ -136,7 +143,9 @@ void ifctele_printElement(void* obj)
 {
 	ifs_ele_t* ptr = (ifs_ele_t*)obj;
 	
-	printf("Age : %i\n", ptr->age);
+	printf("나이: %i\n", ptr->age);
+	printf("감염기간: %i\n", ptr->time);
+	printf("장소: %i\n", ptr->age);
 }
 
 
