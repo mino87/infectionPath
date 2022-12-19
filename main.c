@@ -24,6 +24,7 @@ int main(int argc, const char * argv[]) {
     int menu_selection;
     void *ifct_element;
     FILE* fp;
+    FILE* ff;
     int pIndex, age, time;
     int placeHist[N_HISTORY];
     int i,j;
@@ -43,7 +44,16 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-  
+    ff = fopen("patientInfo_sample.txt","r");
+    
+	while (3==fscanf(ff,"%i %i %i",&pIndex,&age,&time)){
+		for(i=0;i<N_HISTORY;i++);
+		    fscanf(ff,"%i",&placeHist[i]);
+		ifct_element = ifctele_genElement(pIndex, age,time,placeHist);
+		
+		ifctdb_addTail(ifct_element);
+	}
+    
     
     //1-3. FILE pointer close
     fclose(fp);
@@ -72,12 +82,10 @@ int main(int argc, const char * argv[]) {
             case MENU_PATIENT:
                 
                 printf("환자의 번호를 입력하시오. : \n");
-                scanf("%d",&i); 
-                    {
-    	                int pl1, pl2,pl3,pl4,pl5;
-    	                printf("The place is %s %s %s %s %s\n", ifctele_getPlaceName(pl1),ifctele_getPlaceName(pl2),ifctele_getPlaceName(pl3),ifctele_getPlaceName(pl4),ifctele_getPlaceName(pl5));
-    	                
-	                 }
+                scanf("%i",&pIndex);
+				int *input = ifctdb_getData(pIndex);
+				ifctele_printElement(*input);
+                    
                 break;
                 
             case MENU_PLACE:
