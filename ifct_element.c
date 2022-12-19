@@ -101,7 +101,7 @@ char countryName[N_PLACE+1][MAX_PLACENAME] =//41곱하기100개임
 typedef struct ifs_ele {
 	int index;//number
 	int age;//age
-	int time;//time
+	unsigned int time;//time
 	place_t place[N_HISTORY];//place[N_HISTORY]
 } ifs_ele_t;//구조체임  
 
@@ -117,7 +117,9 @@ void* ifctele_genElement(int index, int age, unsigned int detected_time, int his
 	ptr->time = detected_time;
 	
     for (i=0;i<N_HISTORY;i++)
-        ptr-> place[i]=history_place[i];
+	{
+		ptr-> place[i]=history_place[i]; 	
+	}
 	return ptr;
 }
 
@@ -130,16 +132,16 @@ int ifctele_getAge(void* obj)
 
 int ifctele_getHistPlaceIndex(void* obj, int index)
 {
-	ifs_ele_t *stptr=(ifs_ele_t*)obj;
+	ifs_ele_t*  ptr=(ifs_ele_t*)obj;
 	place_t(pIndex);
-	return stptr->place[index];
+	return ptr->place[index];
 	
 }
 
 unsigned int ifctele_getinfestedTime(void* obj)
 {
-	ifs_ele_t* stptr = (ifs_ele_t*)obj;
-	return stptr->time;
+	ifs_ele_t* ptr = (ifs_ele_t*)obj;
+	return ptr->time;
 	
 }
 
@@ -156,7 +158,7 @@ void ifctele_printElement(void* obj)
 	printf("장소: ");
 	for(i=0;i<N_HISTORY;i++)
 	{
-		printf("%s",ifctele_getPlaceName(ptr->place[i]));
+		printf("  %s",ifctele_getPlaceName(ptr->place[i]));
 	}
 }
 

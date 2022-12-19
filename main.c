@@ -27,8 +27,8 @@ int main(int argc, const char * argv[]) {
     FILE* ff;
     int pIndex, age, time;
     int placeHist[N_HISTORY];
-    int i,j;
-    char country[20];
+   
+    char jj[100];
     //------------- 1. loading patient info file ------------------------------
     //1-1. FILE pointer open
     if (argc != 2)
@@ -46,9 +46,13 @@ int main(int argc, const char * argv[]) {
     
 
     
-	while (3==fscanf(fp,"%i %i %i",&pIndex,&age,&time)){
-		for(i=0;i<N_HISTORY;i++);
-		    fscanf(fp,"%i",&placeHist[i]);
+	while (3 == fscanf(fp,"%d %d %d",&pIndex,&age,&time)){//3개 먼저 받음  
+		int i;
+		for(i=0;i<N_HISTORY;i++)
+		{
+			fscanf(fp,"%d",&placeHist[i]);
+		}
+		    
 		ifct_element = ifctele_genElement(pIndex, age,time,placeHist);
 		
 		ifctdb_addTail(ifct_element);
@@ -83,19 +87,20 @@ int main(int argc, const char * argv[]) {
                 
                 printf("환자의 번호를 입력하시오. : \n");
                 scanf("%i",&pIndex);
-				int *input = ifctdb_getData(pIndex);
-				ifctele_printElement(*input);
+				void* input = ifctdb_getData((pIndex-1));
+				ifctele_printElement(input);
                     
                 break;
                 
             case MENU_PLACE:
                 printf("장소를 입력하십시오. : \n");
-                scanf("%s",&country);
+                scanf("%s",&jj);
                 break;
                 
             case MENU_AGE:
                 printf("나이를 입력하십시오. : \n");
-                scanf("%d %d",&i,&j);
+                int i,j;
+				scanf("%d %d",&i,&j);
                 break;
                 
             case MENU_TRACK:
