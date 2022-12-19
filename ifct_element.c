@@ -105,7 +105,7 @@ typedef struct ifs_ele {
 	place_t place[N_HISTORY];//place[N_HISTORY]
 } ifs_ele_t;//구조체임  
 
-
+int i;
 
 void* ifctele_genElement(int index, int age, unsigned int detected_time, int history_place[N_HISTORY])
 {
@@ -115,25 +115,31 @@ void* ifctele_genElement(int index, int age, unsigned int detected_time, int his
 	ptr->index = index;
 	ptr->age = age;
 	ptr->time = detected_time;
-	ptr->place[N_HISTORY] = history_place[N_HISTORY];
-
+	
+    for (i=0;i<N_HISTORY;i++)
+        ptr-> place[i]=history_place[i];
 	return ptr;
 }
 
 int ifctele_getAge(void* obj)
 {
-	ifs_ele_t* ptr = (ifs_ele_t*)obj;
+	ifs_ele_t* stptr = (ifs_ele_t*)obj;
 	
-	return ptr->age;
+	return stptr->age;
 }
 
-int ifctele_getHistPlaceIndex(void* obj, int index);
+int ifctele_getHistPlaceIndex(void* obj, int index)
+{
+	ifs_ele_t *stptr=(ifs_ele_t*)obj;
+	place_t(pIndex);
+	return stptr->place[index];
+	
+}
 
 unsigned int ifctele_getinfestedTime(void* obj)
 {
-	ifs_ele_t* ptr = (ifs_ele_t*)obj;
-	
-	return ptr->time;
+	ifs_ele_t* stptr = (ifs_ele_t*)obj;
+	return stptr->time;
 	
 }
 
@@ -144,10 +150,14 @@ unsigned int ifctele_getinfestedTime(void* obj)
 void ifctele_printElement(void* obj)
 {
 	ifs_ele_t* ptr = (ifs_ele_t*)obj;
-	printf("환자번호 %d 번",(ptr->index)+1); 
+	printf("환자번호 %i 번",(ptr->index)+1); 
 	printf("나이: %i\n", ptr->age);
 	printf("감염기간: %i\n", ptr->time);
-	printf("장소: %i\n", ptr->age);
+	printf("장소: ");
+	for(i=0;i<N_HISTORY;i++)
+	{
+		printf("%s",ifctele_getPlaceName(ptr->place[i]));
+	}
 }
 
 

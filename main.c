@@ -37,18 +37,18 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    fp = fopen("patientInfo_sample.txt", "r");
+    fp = fopen(argv[1], "r");
     if (fp == NULL)
     {
         printf("[ERROR] Failed to open database file!! (%s)\n", argv[1]);
         return -1;
     }
     
-    ff = fopen("patientInfo_sample.txt","r");
+
     
-	while (3==fscanf(ff,"%i %i %i",&pIndex,&age,&time)){
+	while (3==fscanf(fp,"%i %i %i",&pIndex,&age,&time)){
 		for(i=0;i<N_HISTORY;i++);
-		    fscanf(ff,"%i",&placeHist[i]);
+		    fscanf(fp,"%i",&placeHist[i]);
 		ifct_element = ifctele_genElement(pIndex, age,time,placeHist);
 		
 		ifctdb_addTail(ifct_element);
