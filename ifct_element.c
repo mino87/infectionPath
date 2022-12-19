@@ -109,12 +109,14 @@ typedef struct ifs_ele {
 
 void* ifctele_genElement(int index, int age, unsigned int detected_time, int history_place[N_HISTORY])
 {
-	ifs_ele_t* ptr;
+	ifs_ele_t* ptr;//구조체를 가르키는 포인터 생성 
 	
 	ptr = (ifs_ele_t*)malloc(sizeof(ifs_ele_t));
 	ptr->index = index;
-	//..
-		
+	ptr->age = age;
+	ptr->time = detected_time;
+	ptr->place[N_HISTORY] = history_place[N_HISTORY];
+
 	return ptr;
 }
 
@@ -133,7 +135,7 @@ unsigned int ifctele_getinfestedTime(void* obj)
 	
 	return ptr->time;
 	
-};
+}
 
 
 //char* ifctele_getPlaceName(int placeIndex);
@@ -142,7 +144,7 @@ unsigned int ifctele_getinfestedTime(void* obj)
 void ifctele_printElement(void* obj)
 {
 	ifs_ele_t* ptr = (ifs_ele_t*)obj;
-	
+	printf("환자번호 %d 번",(ptr->index)+1); 
 	printf("나이: %i\n", ptr->age);
 	printf("감염기간: %i\n", ptr->time);
 	printf("장소: %i\n", ptr->age);
