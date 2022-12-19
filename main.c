@@ -18,7 +18,6 @@
 
 #define TIME_HIDE           2
 
-
 int trackInfester(int patient_no, int *detected_time, int *place);
 int main(int argc, const char * argv[]) {
     
@@ -27,8 +26,8 @@ int main(int argc, const char * argv[]) {
     FILE* fp;
     int pIndex, age, time;
     int placeHist[N_HISTORY];
-    int i;
-    
+    int i,j;
+    char country[20];
     //------------- 1. loading patient info file ------------------------------
     //1-1. FILE pointer open
     if (argc != 2)
@@ -37,29 +36,19 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    fp = fopen(argv[1],"r");
+    fp = fopen("patientInfo_sample.txt", "r");
     if (fp == NULL)
     {
         printf("[ERROR] Failed to open database file!! (%s)\n", argv[1]);
         return -1;
     }
     
-    //1-2. loading each patient informations
-    
-	
-	fp = fopen("patientlnfo_sample.txt","r");
-	while ( 3 == fscanf("%d,%d,%d",&pIndex, &age, &time))
-    {
-    	for(i=0;i<5;i++) 
-			fscanf("%d",&placeHist[i]);
-    }  
-		ifct_element = ifctele_genElement(pIndex, age,time,placeHist[N_HISTORY]);
-		
-		ifctdb_addTail(ifct_element);
-    
+  
     
     //1-3. FILE pointer close
     fclose(fp);
+    
+
     
     do {
         printf("\n=============== INFECTION PATH MANAGEMENT PROGRAM (No. of patients : %i) =============\n", ifctdb_len());
@@ -82,14 +71,23 @@ int main(int argc, const char * argv[]) {
                 
             case MENU_PATIENT:
                 
+                printf("환자의 번호를 입력하시오. : \n");
+                scanf("%d",&i); 
+                    {
+    	                int pl1, pl2,pl3,pl4,pl5;
+    	                printf("The place is %s %s %s %s %s\n", ifctele_getPlaceName(pl1),ifctele_getPlaceName(pl2),ifctele_getPlaceName(pl3),ifctele_getPlaceName(pl4),ifctele_getPlaceName(pl5));
+    	                
+	                 }
                 break;
                 
             case MENU_PLACE:
-                
+                printf("장소를 입력하십시오. : \n");
+                scanf("%s",&country);
                 break;
                 
             case MENU_AGE:
-                
+                printf("나이를 입력하십시오. : \n");
+                scanf("%d %d",&i,&j);
                 break;
                 
             case MENU_TRACK:

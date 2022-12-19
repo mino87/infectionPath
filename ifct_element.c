@@ -52,9 +52,9 @@ typedef enum place {
     Istanbul,       //37
     Dubai,          //38
     CapeTown        //39
-} place_t;
+} place_t;// 이넘이라서 가능한 값들의 모임임 
 
-char countryName[N_PLACE+1][MAX_PLACENAME] =
+char countryName[N_PLACE+1][MAX_PLACENAME] =//41곱하기100개임 
 {   "Seoul",
     "Jeju",
     "Tokyo",
@@ -96,13 +96,14 @@ char countryName[N_PLACE+1][MAX_PLACENAME] =
     "Dubai",
     "CapeTown",
     "Unrecognized"
-};
+};//나라이름 모음  
+
 typedef struct ifs_ele {
 	int index;//number
 	int age;//age
 	int time;//time
 	place_t place[N_HISTORY];//place[N_HISTORY]
-} ifs_ele_t;
+} ifs_ele_t;//구조체임  
 
 
 
@@ -110,9 +111,8 @@ void* ifctele_genElement(int index, int age, unsigned int detected_time, int his
 {
 	ifs_ele_t* ptr;
 	
-	ptr = (void*)malloc(sizeof(void)*10);
+	ptr = (ifs_ele_t*)malloc(sizeof(ifs_ele_t));
 	ptr->index = index;
-
 	//..
 		
 	return ptr;
@@ -125,17 +125,8 @@ int ifctele_getAge(void* obj)
 	return ptr->age;
 }
 
-int ifctele_getHistPlaceIndex(void* obj, int index)
-{
-	
-};
-
-unsigned int ifctele_getinfestedTime(void* obj)
-{
-	ifs_ele_t* ptr = (ifs_ele_t*)obj;
-	
-	return ptr->time;	
-};
+int ifctele_getHistPlaceIndex(void* obj, int index);
+unsigned int ifctele_getinfestedTime(void* obj);
 
 
 //char* ifctele_getPlaceName(int placeIndex);
@@ -143,17 +134,9 @@ unsigned int ifctele_getinfestedTime(void* obj)
 
 void ifctele_printElement(void* obj)
 {
-	int i;
 	ifs_ele_t* ptr = (ifs_ele_t*)obj;
 	
 	printf("Age : %i\n", ptr->age);
-	printf("detected_time : %i\n", ptr->time);
-	for(i=0;i<N_HISTORY;i++)
-	{
-		printf("place is : %i\n", ptr->place[i]);
-		
-	}
-		
 }
 
 
