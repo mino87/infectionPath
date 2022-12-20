@@ -54,7 +54,7 @@ typedef enum place {
     CapeTown        //39
 } place_t;// 이넘이라서 가능한 값들의 모임임 
 
-char countryName[N_PLACE+1][MAX_PLACENAME] =//41곱하기100개임 
+char countryName[N_PLACE+1][MAX_PLACENAME] =
 {   "Seoul",
     "Jeju",
     "Tokyo",
@@ -152,7 +152,7 @@ unsigned int ifctele_getinfestedTime(void* obj)
 void ifctele_printElement(void* obj)
 {
 	ifs_ele_t* ptr = (ifs_ele_t*)obj;
-	printf("환자번호 %i 번",(ptr->index)+1); 
+	printf("환자번호: %i 번\n",(ptr->index)+1); 
 	printf("나이: %i\n", ptr->age);
 	printf("감염기간: %i\n", ptr->time);
 	printf("장소: ");

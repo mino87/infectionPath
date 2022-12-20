@@ -15,6 +15,7 @@
 #define MENU_AGE            3
 #define MENU_TRACK          4
 #define MENU_EXIT           0
+#define p_number            ifctdb_len()
 
 #define TIME_HIDE           2
 
@@ -93,31 +94,48 @@ int main(int argc, const char * argv[]) {
                     
                 break;
                 
-            case MENU_PLACE:
+            case MENU_PLACE://여행의 끝 두 장소가 일치 하면됨  
                 printf("장소를 입력하십시오. : \n");
                 scanf("%s",&jj);
                 int flag_2=0;
-                for(i=0;i<5;i++)
+                for(i=0;i<p_number;i++)
                 {
-                	ifct_element = ifctdb_getData(i);          
-                	
+                	ifct_element = ifctdb_getData(i);//정보가지고오기 
+                	j = ifctele_getHistPlaceIndex(ifct_element, N_HISTORY-1);//5번째 장소 
+                	k = ifctele_getHistPlaceIndex(ifct_element, N_HISTORY-2);//4번째 장소 
+                	if (strcmp(jj,ifctele_getPlaceName(j))==0)
+					{
+						flag_2++;
+						printf("===========환자정보============\n");
+						ifctele_printElement(ifct_element);
+						
+					}
+					printf("\n");
+					if (strcmp(jj,ifctele_getPlaceName(k))==0)
+					{
+						flag_2++;
+						
+						printf("===========환자정보============\n");
+						ifctele_printElement(ifct_element);
+					}		
 				}
+				printf("\n%s 에서 발병된 환자는 %d명 입니다.\n",jj,flag_2);
                 break;
                 
-            case MENU_AGE:
+            case MENU_AGE://입력한 숫자 사이의 나이인 환자출력 
                 printf("나이를 입력하십시오.(최소)(최대) : \n");
-                int i,k,j;
                 int flag=0;
 				scanf("%d %d",&i,&j);
-				for(k=0;k<5;k++)
+				for(k=0;k<p_number;k++)
 				{
-					if(i<=ifctele_getAge(ifctdb_getData(k))&&ifctele_getAge(ifctdb_getData(k))<=j)
+					if(i<=ifctele_getAge(ifctdb_getData(k))&&ifctele_getAge(ifctdb_getData(k))<=j)//두개의 조건을 만족해야 출력  
 					{
 						flag++;
+						ifctele_printElement(ifctdb_getData(k));
 					}
-					
+					printf("\n"); 
 				}
-				printf("%d %d  사이의 나이인 환자는 %d명 입니다.",i,j,flag);
+				printf("(%d ~ %d) 사이의 나이인 환자는 %d명 입니다.",i,j,flag);
 		
                 break;
                 
