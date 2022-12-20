@@ -24,9 +24,10 @@ int main(int argc, const char * argv[]) {
     int menu_selection;
     void *ifct_element;
     FILE* fp;
-    FILE* ff;
+    
     int pIndex, age, time;
     int placeHist[N_HISTORY];
+    int i,k,j;
    
     char jj[100];
     //------------- 1. loading patient info file ------------------------------
@@ -47,7 +48,7 @@ int main(int argc, const char * argv[]) {
 
     
 	while (3 == fscanf(fp,"%d %d %d",&pIndex,&age,&time)){//3개 먼저 받음  
-		int i;
+		
 		for(i=0;i<N_HISTORY;i++)
 		{
 			fscanf(fp,"%d",&placeHist[i]);
@@ -95,12 +96,29 @@ int main(int argc, const char * argv[]) {
             case MENU_PLACE:
                 printf("장소를 입력하십시오. : \n");
                 scanf("%s",&jj);
+                int flag_2=0;
+                for(i=0;i<5;i++)
+                {
+                	ifct_element = ifctdb_getData(i);          
+                	
+				}
                 break;
                 
             case MENU_AGE:
-                printf("나이를 입력하십시오. : \n");
-                int i,j;
+                printf("나이를 입력하십시오.(최소)(최대) : \n");
+                int i,k,j;
+                int flag=0;
 				scanf("%d %d",&i,&j);
+				for(k=0;k<5;k++)
+				{
+					if(i<=ifctele_getAge(ifctdb_getData(k))&&ifctele_getAge(ifctdb_getData(k))<=j)
+					{
+						flag++;
+					}
+					
+				}
+				printf("%d %d  사이의 나이인 환자는 %d명 입니다.",i,j,flag);
+		
                 break;
                 
             case MENU_TRACK:
